@@ -1,0 +1,37 @@
+aid: defense-health-agency
+name: Defense Health Agency
+description: >-
+  The Defense Health Agency Policy Memorandum establishes the expectation that
+  the Defense Health Networks will provide the opportunity for skills
+  sustainment of enlisted health care personnel to ensure they operate to their
+  full scope of practice in accordance with Service-specific guidelines,
+  regardless of military medical treatment facility ...
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - API
+created: '2024-12-03'
+modified: '2024-12-03'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/defense-health-agency/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: defense-health-agency:defense-health-agency
+    name: Defense Health Agency
+    description: >-
+      The Defense Health Agency Policy Memorandum establishes the expectation
+      that the Defense Health Networks will provide the opportunity for skills
+      sustainment of enlisted health care personnel to ensure they operate to
+      their full scope of practice in accordance with Service-specific
+      guidelines, regardless of military medical treatment facility ...
+    humanURL: https://health.mil/Reference-Center/DHA-Publications
+    tags:
+      - API
+    properties:
+      - type: Documentation
+        url: https://health.mil/Reference-Center/DHA-Publications
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
