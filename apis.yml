@@ -46,6 +46,8 @@ apis:
       - type: Documentation
         url: https://health.mil/About-MHS/OASDHA/Defense-Health-Agency/Solution-Delivery-Division/MHS-GENESIS
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/defense-health-agency
   - type: Website
     url: https://www.health.mil
   - type: About DHA
