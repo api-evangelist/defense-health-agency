@@ -30,6 +30,15 @@ position: Consuming
 specificationVersion: '0.23'
 kind: government
 tags:
+  - Federal-Government
+  - Defense
+  - Department of Defense
+  - Health
+  - Military Health System
+  - MHS Genesis
+  - FHIR
+  - Health IT
+tags_raw:
   - Federal Government
   - Defense
   - Department of Defense
