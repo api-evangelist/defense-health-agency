@@ -4,10 +4,10 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Defense Health Agency
 providerId: defense-health-agency
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-07'
+generated: '2026-09-07'
+method: searched
+source: https://www.health.mil/Military-Health-Topics/Technology/MHS-GENESIS
 tags:
   - Federal Government
   - Defense
@@ -18,78 +18,29 @@ tags:
   - FHIR
   - Health IT
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Defense Health Agency API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - MHS Genesis SMART on FHIR API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - MHS Genesis SMART on FHIR API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - MHS Genesis SMART on FHIR API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - MHS Genesis SMART on FHIR API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - MHS Genesis SMART on FHIR API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+description: >-
+  The Defense Health Agency documents no API rate limits, quotas, throttling behaviour or
+  rate-limit response headers. There is no public developer documentation on any DHA host
+  in which such limits could be stated, and no public endpoint against which they could be
+  observed. limit_count is 0 and that is an honest measurement.
+limit_count: 0
+limits: []
+headers: {}
+responseCodes: {}
+policies: []
+observed:
+  note: >-
+    No limits were observed live either: DHA exposes no unauthenticated API endpoint.
+    health.mil, dha.mil and tricare.mil sit behind an F5 TSPD bot-defense interstitial that
+    answers command-line clients with a JavaScript challenge, so even the public web tier
+    cannot be used to observe RateLimit-* headers.
+supersedes:
+  note: >-
+    This file replaces a 2026-05-04 bulk-sweep scaffold that asserted X-RateLimit-Limit /
+    -Remaining / -Reset and RateLimit-Policy response headers, a 429 throttle code, and
+    free/professional/enterprise limits of 10/100/1000 requests per minute against the
+    "MHS Genesis SMART on FHIR API". DHA publishes none of that; it was template default
+    content. Removed 2026-09-07 under the no-fabrication rule.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

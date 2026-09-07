@@ -10,7 +10,11 @@ description: >-
   record, the Military Health System Data Repository (MDR), and the Enterprise
   Intelligence and Data Solutions (EIDS) program. Data exchange inside MHS
   Genesis uses SMART on FHIR APIs, but DHA does not currently publish a
-  general-purpose public developer API.
+  general-purpose public developer API, a developer portal, or any
+  machine-readable API contract. What it does publish is human-readable
+  interface documentation: 32 Interface Control Documents for MHS Data
+  Repository feeds, plus MDR and M2 data dictionaries and access guides, all
+  distributed as .DOCX and .PDF through the Health.mil Reference Center.
 type: Index
 deliveryModel:
   model: unknown
@@ -24,17 +28,23 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: freemium
-  onboarding: unknown
+  pricing: none
+  onboarding: approval
   trial: false
   try_now: false
   public: false
-  label: Freemium
-  confidence: medium
+  label: No published plans — access by agreement
+  confidence: high
   source:
   - plans
-  generated: '2026-07-22'
+  - https://health.mil/Military-Health-Topics/Technology/Support-Areas/MDR-M2-ICD-Functional-References-and-Specification-Documents
+  generated: '2026-09-07'
   method: derived
+  note: >-
+    Corrected 2026-09-07. The previous `freemium` value was derived from a bulk-sweep
+    plans scaffold that invented Free/Professional/Enterprise tiers. DHA publishes no
+    plans and no pricing; MHS GENESIS interface access is restricted to vetted DoD
+    application partners and MDR/M2 accounts are granted on request.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/defense-health-agency.png
 access: 3rd-Party
 position: Consuming
@@ -59,7 +69,7 @@ tags_raw:
   - FHIR
   - Health IT
 created: '2024-12-03'
-modified: '2026-04-28'
+modified: '2026-09-07'
 apis:
   - aid: defense-health-agency:mhs-genesis-smart-on-fhir
     name: MHS Genesis SMART on FHIR API
@@ -68,7 +78,8 @@ apis:
       Oracle Health (Cerner), exposes a SMART on FHIR interface for
       authorized clinical applications to read and write patient data. Access
       is restricted to vetted application partners and DoD beneficiaries.
-    humanURL: https://health.mil/About-MHS/OASDHA/Defense-Health-Agency/Solution-Delivery-Division/MHS-GENESIS
+    humanURL: https://www.health.mil/Military-Health-Topics/Technology/MHS-GENESIS
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/defense-health-agency.png
     tags:
       - FHIR
       - SMART on FHIR
@@ -76,7 +87,7 @@ apis:
       - MHS Genesis
     properties:
       - type: Documentation
-        url: https://health.mil/About-MHS/OASDHA/Defense-Health-Agency/Solution-Delivery-Division/MHS-GENESIS
+        url: https://www.health.mil/Military-Health-Topics/Technology/MHS-GENESIS
 common:
   - type: DomainSecurity
     url: security/defense-health-agency-domain-security.yml
@@ -84,12 +95,58 @@ common:
     url: https://www.linkedin.com/company/defense-health-agency
   - type: Website
     url: https://www.health.mil
-  - type: About DHA
-    url: https://www.health.mil/About-MHS/OASDHA/Defense-Health-Agency
-  - type: Publications
-    url: https://health.mil/Reference-Center/DHA-Publications
-  - type: News
+  - type: About
+    url: https://www.dha.mil/About-DHA
+  - type: x-Publications
+    url: https://www.health.mil/Reference-Center
+  - type: Newsroom
     url: https://www.health.mil/News
+  - type: Conformance
+    url: conformance/defense-health-agency-conformance.yml
+  - type: LLMsTxt
+    url: llms/defense-health-agency-llms.txt
+  - type: Plans
+    url: plans/defense-health-agency-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/defense-health-agency-rate-limits.yml
+  - type: Blog
+    url: https://www.health.mil/News/Articles
+  - type: BlogRSS
+    url: https://health.mil/RSS/Articles
+  - type: PrivacyPolicy
+    url: https://dpcld.defense.gov/Privacy.aspx
+  - type: x-InterfaceControlDocuments
+    url: >-
+      https://health.mil/Military-Health-Topics/Technology/Support-Areas/MDR-M2-ICD-Functional-References-and-Specification-Documents/Interface-Control-Documents-Functional-References-and-Specifications
+  - type: x-TechnologyPrograms
+    url: https://www.health.mil/Military-Health-Topics/Technology
+x-enrichment:
+  date: '2026-09-07'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v3
+x-coverage:
+  state: unreadable
+  reason: pdf-only-docs
+  detail: >-
+    DHA's only published interface reference is a set of 32 Interface Control Documents
+    for MHS Data Repository feeds, served as .DOCX and .PDF from the Health.mil Reference
+    Center, with no OpenAPI, FHIR CapabilityStatement, WSDL or .proto anywhere on
+    health.mil, dha.mil or tricare.mil, and the developer request path behind them
+    (info.health.mil) is served under a DoD-internal PKI certificate that no public client
+    can complete a TLS handshake with.
+  evidence:
+    - url: https://health.mil/Military-Health-Topics/Technology/Support-Areas/MDR-M2-ICD-Functional-References-and-Specification-Documents/Interface-Control-Documents-Functional-References-and-Specifications
+      status: 200
+    - url: https://www.health.mil/Reference-Center/Technical-Documents/2015/11/15/ICD-TED-I
+      status: 200
+    - url: https://www.health.mil/.well-known/api-catalog
+      status: 404
+    - url: https://www.health.mil/llms.txt
+      status: 404
+    - url: https://info.health.mil/apps/HIT/services/SitePages/escMenu.aspx
+      status: 0
+  checked: '2026-09-07'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-09-07'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -19,8 +19,8 @@ domains:
   dnssec: true
   caa:
   - 128 issue "digicert.com"
-  - 128 issue "entrust.net"
   - 128 issue "identrust.com"
+  - 128 issue "entrust.net"
   spf: true
   dmarc: true
   dmarc_policy: reject

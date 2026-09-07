@@ -1,0 +1,210 @@
+generated: '2026-09-07'
+method: searched
+source: https://www.health.mil/Military-Health-Topics/Technology/Joint-HIE
+provider: Defense Health Agency
+providerId: defense-health-agency
+description: >-
+  Standards the Defense Health Agency states it participates in or exchanges data under,
+  read from DHA's own public pages and from a DHA-published SBIR topic. NOTHING HERE WAS
+  READ FROM A CONTRACT — no OpenAPI, FHIR CapabilityStatement, WSDL or GraphQL SDL is
+  publicly reachable for any DHA surface (see x-coverage in apis.yml), so every entry
+  below is a DOCUMENTED CLAIM by the agency, not a machine-verified conformance.
+  The `contract_verified` field on each entry says which it is.
+caveat: >-
+  A documented claim and a conformant contract are different facts. Recording the
+  difference is the point of this file: a buyer who already speaks FHIR still cannot
+  confirm from anything DHA publishes which FHIR release, profiles, or resources the
+  MHS GENESIS interface exposes.
+conformance:
+  - id: ehealth-exchange
+    label: eHealth Exchange
+    conforms: true
+    contract_verified: false
+    evidence: https://www.health.mil/Military-Health-Topics/Technology/Joint-HIE
+    note: >-
+      DHA's Joint Health Information Exchange page states health data is shared "through
+      the eHealth Exchange, CommonWell Health Alliance, and Carequality."
+  - id: commonwell
+    label: CommonWell Health Alliance
+    conforms: true
+    contract_verified: false
+    evidence: https://www.health.mil/Military-Health-Topics/Technology/Joint-HIE
+    note: Named on the same Joint HIE page as an exchange network DHA participates in.
+  - id: carequality
+    label: Carequality
+    conforms: true
+    contract_verified: false
+    evidence: https://www.health.mil/Military-Health-Topics/Technology/Joint-HIE
+    note: >-
+      "In August 2023, the Federal Electronic Health Record Modernization office expanded
+      its joint health information exchange to include participation in Carequality, a
+      framework enabling health data sharing between and among networks."
+  - id: smart-on-fhir
+    label: SMART on FHIR
+    conforms: true
+    contract_verified: false
+    evidence: https://www.sbir.gov/topics/11133
+    note: >-
+      A DHA-published SBIR topic states "MHS Genesis (Cerner) SMART on FHIR API will be
+      provided for data ingress/egress and must be able to retrieve information from the
+      EHR when queried." No launch URL, scope list, or .well-known/smart-configuration is
+      published — the probe of
+      patientportal.mhsgenesis.health.mil/.well-known/smart-configuration returned 404.
+  - id: fhir
+    label: HL7 FHIR
+    conforms: true
+    contract_verified: false
+    evidence: https://www.sbir.gov/topics/11133
+    note: >-
+      Implied by the SMART on FHIR statement above and by MHS GENESIS running on Oracle
+      Health (Cerner) Millennium, whose public FHIR release is R4. DHA itself never states
+      a FHIR release, and MHS GENESIS does NOT appear in Oracle Health's public
+      patient-access endpoint directory (oracle-samples/ignite-endpoints,
+      millennium_patient_r4_endpoints.json, checked 2026-09-07 — the only "GENESIS" match
+      is GENESIS HEALTH SYSTEM, an unrelated Iowa health system), so no DHA FHIR service
+      root is publicly discoverable.
+  - id: oauth2
+    label: OAuth 2.0
+    conforms: false
+    contract_verified: false
+    evidence: https://www.health.mil/.well-known/oauth-authorization-server
+    note: >-
+      404. SMART on FHIR implies an OAuth 2.0 authorization server exists behind the DoD
+      boundary, but no authorization-server metadata is served on any public DHA host.
+  - id: openid-connect
+    label: OpenID Connect
+    conforms: false
+    contract_verified: false
+    evidence: https://www.health.mil/.well-known/openid-configuration
+    note: 404 — no OIDC discovery document on any public DHA host.
+domain_standard:
+  sector: health
+  candidates_checked: [fhir, smart-on-fhir, us-core, uscdi, da-vinci, carin-blue-button,
+                       fhir-bulk-data, cds-hooks, c-cda, hl7-v2, dicom]
+  declared_in_contract: false
+  note: >-
+    `domain_standard_conformance` reads the CONTRACT, not a marketing page, and there is
+    no fetchable DHA contract to read. FHIR and SMART on FHIR are recorded above as
+    documented claims only. No US Core / USCDI / Da Vinci / CARIN / bulk-data / CDS Hooks
+    / C-CDA / HL7 v2 / DICOM claim was found on any public DHA page, and none was invented
+    to fill the slot.
+adjacent_specifications_published:
+  note: >-
+    DHA does publish interface specifications — 32 Interface Control Documents for the
+    MHS Data Repository feeds — but as .DOCX and .PDF, not as a machine-readable contract.
+    See x-coverage (unreadable / pdf-only-docs) in apis.yml.
+  index: https://health.mil/Military-Health-Topics/Technology/Support-Areas/MDR-M2-ICD-Functional-References-and-Specification-Documents/Interface-Control-Documents-Functional-References-and-Specifications
+  count: 32
+  verified:
+    url: https://www.health.mil/Reference-Center/Technical-Documents/2015/11/15/ICD-TED-I
+    status: 200
+    content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    bytes: 223027
+    fetched: '2026-09-07'
+    identity: >-
+      "SDD Interface Control Document — ICD Describing the Data Exchange of TED-I Data from
+      DHA Decision Support Division to MDR", document number ICD 1300-1641-01, final draft
+      approval 11/05/15. Authored by the MDR Team for the DHA Decision Support Division and
+      the Solution Delivery Division PEO — first-party DHA, not a vendor document.
+    note: >-
+      One ICD was fetched and its text extracted to confirm these are genuine DHA-authored
+      interface specifications rather than link stubs. The remaining 31 were read from DHA's
+      own published index and are recorded with the format DHA states; formats marked null
+      were not stated on the index page and were not probed.
+  documents:
+    - name: ICD Ancillary SADR Data Exchange
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/04/18/ICD-Ancillary
+    - name: ICD Appointment and Referral
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2010/05/10/ICD-Appointment-and-Referral
+    - name: ICD Appointment Data
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2009/06/10/ICD-Appointment-Data
+    - name: ICD CAPER Basic
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/05/01/ICD-CAPER-Basic
+    - name: ICD CAPER Supplemental
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2015/02/02/ICD-CAPER-Supplemental
+    - name: ICD Case Management
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2009/05/30/ICD-Case-Management
+    - name: ICD CDR Data Feeds
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/05/01/ICD-CDR
+    - name: ICD Contingency Tracking System
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/04/18/ICD-Contingency-Tracking-System
+    - name: ICD Customer Satisfaction Survey
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2005/01/28/ICD-Customer-Satisfaction-Survey
+    - name: ICD Death/Casualty File
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2007/08/07/ICD-Death--Casualty-File
+    - name: ICD DEERS VM-6 Extract
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2006/12/19/ICD-DEERS-VM6
+    - name: ICD Dental DC
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/04/18/ICD-Dental---DC
+    - name: ICD Dental Service Area File
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2010/05/25/ICD-Dental-Service-Area-File--SAF
+    - name: ICD Designated Provider Providers
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2006/04/27/ICD-Designated-Provider-Providers
+    - name: ICD DMIS ID Index
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2008/12/11/ICD-DMIS-ID-Index
+    - name: ICD EAS IV MEPRS
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2011/04/15/ICD-EAS-IV---MEPRS
+    - name: ICD HCPR for MDR
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2004/05/07/ICD-HCPR-for-the-MDR
+    - name: ICD HCSR Institutional
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2006/10/12/ICD-HCSR-I
+    - name: ICD HCSR Non-Institutional
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2006/10/12/ICD-HCSR-NI
+    - name: ICD MMSO Dental Claims
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2006/12/20/ICD-MMSO-Dental-Claims
+    - name: ICD PCMBN
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2007/03/09/ICD-PCMBN
+    - name: ICD PDTS
+      format: pdf
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2011/04/06/ICD-PDTS
+    - name: ICD PEP
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/05/18/ICD-PEP
+    - name: ICD Reservist Beneficiary
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2007/05/23/ICD-Reservist-Table
+    - name: ICD SADR
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2008/05/29/ICD-SADR
+    - name: ICD SIDR
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2010/09/16/ICD-SIDR
+    - name: ICD TED Institutional
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2015/11/15/ICD-TED-I
+    - name: ICD TED Non-Institutional
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2015/11/05/ICD-TED-NI
+    - name: ICD TRDP
+      format: pdf
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2011/04/06/ICD-TRDP
+    - name: ICD TRICARE Dental Program
+      format: docx
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2012/06/07/ICD-TRICARE-Dental-Program
+    - name: ICD VA Claims and Referrals
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2007/08/15/ICD-VA-Claims-and-Referrals
+    - name: ICD Worldwide Workload Report
+      format: null
+      url: https://www.health.mil/Reference-Center/Technical-Documents/2004/02/20/ICD-Worldwide-Workload-Report

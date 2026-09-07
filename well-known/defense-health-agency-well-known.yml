@@ -1,0 +1,80 @@
+generated: '2026-09-07'
+method: probed
+source: live HTTP probes of every host this record knows
+provider: Defense Health Agency
+providerId: defense-health-agency
+description: >-
+  Probe record for the named /.well-known/ discovery documents across every host the
+  Defense Health Agency record knows. Nothing was served: every named path returned 404,
+  or a 200 carrying an HTML "page not found" body (a soft-404, which is not a document).
+  No WellKnown or SecurityTxt pointer is emitted, because a recorded absence is not a
+  presence.
+note: >-
+  health.mil, dha.mil and tricare.mil all sit behind an F5 TSPD bot-defense interstitial,
+  which answers a plain command-line client with a 200 and a 7,626-byte JavaScript
+  challenge for EVERY path, including the homepage. The statuses below were therefore
+  taken with a browser-class fetcher that clears the challenge and returns the origin's
+  real status code, not with curl. A curl-only probe of these hosts would have recorded
+  eight bogus 200s.
+hosts:
+  - host: www.health.mil
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /llms.txt
+        status: 404
+        file: null
+  - host: www.dha.mil
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 200
+        file: null
+        note: >-
+          Soft-404 — the origin answered 200 with the DHA.mil HTML error page reading
+          "The page you are looking for, /.well-known/api-catalog, has either moved or
+          been removed." Not a linkset document; scored as a miss.
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /llms.txt
+        status: 404
+        file: null
+  - host: www.tricare.mil
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+unreachable_hosts:
+  - host: info.health.mil
+    reason: >-
+      The DHA developer/service request portal (DAD IO J-6) is served under a DoD-internal
+      PKI certificate — subject CN=info.health.mil, issuer "C=US, O=U.S. Government, OU=DoD,
+      OU=PKI, CN=DOD SW CA-82" — which does not chain to any public root, so the TLS
+      handshake fails for any client outside the DoD PKI. It also requires a Common Access
+      Card. No /.well-known/ probe is possible and none was attempted beyond the handshake.
+    evidence: 'openssl s_client -connect info.health.mil:443 -> issuer CN=DOD SW CA-82; curl exit 60'
