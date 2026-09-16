@@ -1,0 +1,11 @@
+{
+  "repo": "defense-health-agency",
+  "feeds": [
+    {
+      "source": "https://www.health.mil/News/Articles",
+      "error": "ConnectionResetError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-09-13T13:00:00Z"
+}
