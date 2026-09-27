@@ -51,7 +51,7 @@ position: Consuming
 specificationVersion: '0.23'
 kind: government
 tags:
-  - Federal-Government
+  - Federal Government
   - Defense
   - Department of Defense
   - Health
@@ -68,6 +68,7 @@ tags_raw:
   - MHS Genesis
   - FHIR
   - Health IT
+  - Federal-Government
 created: '2024-12-03'
 modified: '2026-09-07'
 apis:
