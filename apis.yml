@@ -90,6 +90,8 @@ apis:
       - type: Documentation
         url: https://www.health.mil/Military-Health-Topics/Technology/MHS-GENESIS
 common:
+  - type: FinOps
+    url: finops/defense-health-agency-finops.yml
   - type: DomainSecurity
     url: security/defense-health-agency-domain-security.yml
   - type: LinkedIn
